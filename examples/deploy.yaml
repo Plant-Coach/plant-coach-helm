@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plant-coach-be
+  labels:
+    app: plant-coach-be
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: plant-coach-be
+  template:
+    metadata:
+      labels:
+        app: plant-coach-be
+    spec:
+      containers:
+      - name: plant-coach-be
+        image: jmgrant/plant-coach-be:amd64-4
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Always
+        volumes:
