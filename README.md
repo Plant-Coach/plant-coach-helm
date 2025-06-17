@@ -1,4 +1,7 @@
-Useful commands during development
+# Plant Coach Helm
+- Deploy a Rails service on a Kubernetes cluster using this Helm Chart "module".
+
+Useful command tidbits during development.
 
 `kubectl exec --stdin --tty <pod-name> -- /bin/bash`
 
