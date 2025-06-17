@@ -28,7 +28,7 @@ jobs:
       
       - name: Prepare Docker Credentials
         run: |
-          cat $DOCKERHUB_TOKEN | docker login -p --password-stdin
+          cat $DOCKERHUB_TOKEN | docker login --password-stdin
 
       - name: Deploy Chart
         run: |
