@@ -22,7 +22,7 @@ jobs:
         run: |
           mkdir kubeconf
           touch kubeconf.conf
-          echo ${{ secrets.KUBECONFIG }} >> kubeconf/kubeconf.conf
+          echo "${{ secrets.KUBECONFIG }}" > kubeconf/kubeconf.conf
 
       - name: Install Helm
         run: |
