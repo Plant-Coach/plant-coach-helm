@@ -24,25 +24,25 @@ serviceAccount:
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
   name: plant-coach-be
-  env_variables:
-    - name: RAILS_ENV
-      value: production
-    - name: RAILS_MASTER_KEY
-      value: 9053dc0629e486ae34af8496815541ad
-    - name: POSTGRES_PORT
-      value: "25060"
-    - name: POSTGRES_HOST
-      value: private-plant-coach-be-postgresql-cluster-do-user-21563123-0.m.db.ondigitalocean.com
-    - name: RAILS_POSTGRES_DB
-      value: defaultdb
-    - name: POSTGRES_USER
-      value: doadmin
-    - name: POSTGRES_PASSWORD
-      value: AVNS_J4ktXjHNjr9ZE-MJUpu
+
+env_variables:
+  - name: RAILS_ENV
+    value: "production"
+  - name: RAILS_MASTER_KEY
+    value: "9053dc0629e486ae34af8496815541ad"
+  - name: POSTGRES_PORT
+    value: "25060"
+  - name: POSTGRES_DB
+    value: "defaultdb"
+  - name: POSTGRES_HOST
+    value: "private-plant-coach-be-postgresql-cluster-do-user-21563123-0.m.db.ondigitalocean.com"
+  - name: POSTGRES_USER
+    value: "doadmin"
+  - name: POSTGRES_PASSWORD
+    value: "AVNS_J4ktXjHNjr9ZE-MJUpu"
 
 podAnnotations: {}
 podLabels:
-  app: plant-coach-be
 
 podSecurityContext: {}
   # fsGroup: 2000
@@ -89,11 +89,11 @@ resources: {}
 
 # livenessProbe:
 #   httpGet:
-#     path: /
+#     path: /healthz
 #     port: http
 # readinessProbe:
 #   httpGet:
-#     path: /
+#     path: /ready
 #     port: http
 
 autoscaling:

@@ -37,7 +37,7 @@ spec:
           image: "{{ .Values.image.repository }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-          {{- range .Values.serviceAccount.env_variables }}
+          {{- range .Values.env_variables }}
             - name: {{ .name | quote }}
               value: {{ .value | quote }}
           {{- end }}
