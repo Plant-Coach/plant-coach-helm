@@ -24,12 +24,13 @@ jobs:
           touch kubeconf.conf
           echo "${{ secrets.KUBECONFIG }}" > kubeconf/kubeconf.conf
 
-      - name: Install Helm
-        run: |
-          curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-          chmod 700 get_helm.sh
-          ./get_helm.sh
+      # - name: Install Helm
+      #   run: |
+      #     curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+      #     chmod 700 get_helm.sh
+      #     ./get_helm.sh
 
       - name: Deploy Chart
         run: |
+          kubectl config view --raw >~/.kube/config
           helm upgrade plant-coach-be .
