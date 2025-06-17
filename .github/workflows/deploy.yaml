@@ -20,9 +20,7 @@ jobs:
 
       - name: Add Kubeconfig
         run: |
-          mkdir .kube
-          touch .kube/config
-          echo "${{ secrets.KUBECONFIG }}" > .kube/config
+          echo "${{ secrets.KUBECONFIG }}" > /home/runner/.kube/config
 
       # - name: Install Helm
       #   run: |
