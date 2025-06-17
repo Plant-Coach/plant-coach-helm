@@ -2,8 +2,8 @@ name: Release Charts
 
 on:
   push:
-    # branches:
-    #   - main
+    branches:
+      - main
 
 jobs:
   deploy:
@@ -24,12 +24,6 @@ jobs:
           touch /home/runner/.kube/config
           echo "${{ secrets.KUBECONFIG }}" > /home/runner/.kube/config
 
-      # - name: Install Helm
-      #   run: |
-      #     curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-      #     chmod 700 get_helm.sh
-      #     ./get_helm.sh
-
       - name: Deploy Chart
         run: |
-          helm upgrade --set-json='env_variables=[{"name": "RAILS_ENV", "value": "production"}, {"name": "RAILS_MASTER_KEY", "value": "${{ secrets.RAILS_MASTER_KEY }}"}, {"name": "POSTGRES_PORT", "value": "25060"}, {"name": "POSTGRES_DB", "value": "${{ secrets.POSTGRES_DB }}"}, {"name": "POSTGRES_HOST", "value": "${{ secrets.POSTGRES_HOST }}"}, {"name": "POSTGRES_USER", "value": "${{ secrets.POSTGRES_USER }}"}, {"name": "POSTGRES_PASSWORD", "value": "${{ secrets.POSTGRES_PASSWORD }}"}]' plant-coach-be . --kube-context do-nyc1-plant-coach 
+          helm upgrade --set-json='env_variables=[{"name": "RAILS_ENV", "value": "${{ env.RAILS_ENV }}"}, {"name": "RAILS_MASTER_KEY", "value": "${{ secrets.RAILS_MASTER_KEY }}"}, {"name": "POSTGRES_PORT", "value": "${{ env.POSTGRES_PORT }}"}, {"name": "POSTGRES_DB", "value": "${{ secrets.POSTGRES_DB }}"}, {"name": "POSTGRES_HOST", "value": "${{ secrets.POSTGRES_HOST }}"}, {"name": "POSTGRES_USER", "value": "${{ secrets.POSTGRES_USER }}"}, {"name": "POSTGRES_PASSWORD", "value": "${{ secrets.POSTGRES_PASSWORD }}"}]' plant-coach-be . --kube-context do-nyc1-plant-coach 
