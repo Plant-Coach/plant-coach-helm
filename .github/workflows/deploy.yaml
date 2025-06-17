@@ -1,29 +1,21 @@
-name: Release Charts
-
-on:
-  push:
-    # branches:
-    #   - main
+# .github/workflows/deploy.yml
+name: Deploy
+on: ['deployment']
 
 jobs:
-  release:
-    # depending on default permission settings for your org (contents being read-only or read-write for workloads), you will have to add permissions
-    # see: https://docs.github.com/en/actions/security-guides/automatic-token-authentication#modifying-the-permissions-for-the-github_token
-    permissions:
-      contents: write
-    runs-on: ubuntu-latest
+  deployment:
+    runs-on: 'ubuntu-latest'
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+    - uses: actions/checkout@v1
 
-      - name: Configure Git
-        run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-
-      - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.7.0
-        env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+    - name: 'Deploy'
+      uses: 'deliverybot/helm@v1'
+      with:
+        release: 'plant-coach-be'
+        namespace: 'default'
+        chart: 'plant-coach-be'
+        token: '${{ github.token }}'
+        values: |
+          name: foobar
+      env:
+        KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
