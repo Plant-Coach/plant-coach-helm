@@ -29,17 +29,17 @@ env_variables:
   - name: RAILS_ENV
     value: "production"
   - name: RAILS_MASTER_KEY
-    value: "9053dc0629e486ae34af8496815541ad"
+    value: ""
   - name: POSTGRES_PORT
     value: "25060"
   - name: POSTGRES_DB
-    value: "defaultdb"
+    value: ""
   - name: POSTGRES_HOST
-    value: "private-plant-coach-be-postgresql-cluster-do-user-21563123-0.m.db.ondigitalocean.com"
+    value: ""
   - name: POSTGRES_USER
-    value: "doadmin"
+    value: ""
   - name: POSTGRES_PASSWORD
-    value: "AVNS_J4ktXjHNjr9ZE-MJUpu"
+    value: ""
 
 podAnnotations: {}
 podLabels:
