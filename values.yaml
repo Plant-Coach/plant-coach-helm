@@ -1,11 +1,11 @@
-# Default values for plant-coach-helm.
+# Default values for plant-coach-be.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
 
 image:
-  repository: nginx
+  repository: jmgrant/plant-coach-be:amd64-92839ca1ff856608b3629c3d24e47c39b879cf4f
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
@@ -23,10 +23,27 @@ serviceAccount:
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: ""
+  name: plant-coach-be
+
+# These values are sensitive and should not be provided here.
+env_variables:
+  - name: RAILS_ENV
+    value: ""
+  - name: RAILS_MASTER_KEY
+    value: ""
+  - name: POSTGRES_PORT
+    value: ""
+  - name: POSTGRES_DB
+    value: ""
+  - name: POSTGRES_HOST
+    value: ""
+  - name: POSTGRES_USER
+    value: ""
+  - name: POSTGRES_PASSWORD
+    value: ""
 
 podAnnotations: {}
-podLabels: {}
+podLabels:
 
 podSecurityContext: {}
   # fsGroup: 2000
@@ -71,14 +88,14 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
-livenessProbe:
-  httpGet:
-    path: /
-    port: http
-readinessProbe:
-  httpGet:
-    path: /
-    port: http
+# livenessProbe:
+#   httpGet:
+#     path: /healthz
+#     port: http
+# readinessProbe:
+#   httpGet:
+#     path: /ready
+#     port: http
 
 autoscaling:
   enabled: false
