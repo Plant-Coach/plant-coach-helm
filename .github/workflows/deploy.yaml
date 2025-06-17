@@ -1,21 +1,29 @@
-# .github/workflows/deploy.yml
-name: Deploy
-on: push
+name: Release Charts
+
+on:
+  push:
+    # branches:
+    #   - main
 
 jobs:
-  deployment:
-    runs-on: 'ubuntu-latest'
+  deploy:
+    # depending on default permission settings for your org (contents being read-only or read-write for workloads), you will have to add permissions
+    # see: https://docs.github.com/en/actions/security-guides/automatic-token-authentication#modifying-the-permissions-for-the-github_token
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-    - name: 'Deploy'
-      uses: 'deliverybot/helm@v1'
-      with:
-        release: 'plant-coach-be'
-        namespace: 'default'
-        chart: 'plant-coach-be'
-        token: '${{ github.token }}'
-        values: |
-          name: foobar
-      env:
-        KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
+      - name: Install Helm
+        run: |
+          curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+          chmod 700 get_helm.sh
+          ./get_helm.sh
+
+      - name: Deploy Chart
+        run: |
+          helm upgrade plant-coach-be .
