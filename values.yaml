@@ -25,13 +25,14 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: plant-coach-be
 
+# These values are sensitive and should not be provided here.
 env_variables:
   - name: RAILS_ENV
-    value: "production"
+    value: ""
   - name: RAILS_MASTER_KEY
     value: ""
   - name: POSTGRES_PORT
-    value: "25060"
+    value: ""
   - name: POSTGRES_DB
     value: ""
   - name: POSTGRES_HOST
