@@ -1,5 +1,5 @@
 # Plant Coach Helm
-- Deploy a Rails service on a Kubernetes cluster using this Helm Chart "module".
+- *This customizable Helm Chart deploys a Rails service on a Kubernetes cluster for the Plant Coach applications.*
 
 Useful command tidbits during development.
 
