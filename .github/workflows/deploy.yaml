@@ -28,7 +28,7 @@ jobs:
       
       - name: Create Docker Registry Secret
         run: |
-          kubectl get secret ${{ secrets.DOCKERHUB_CLUSTER_SECRET }}
+          kubectl get secret "${{ secrets.DOCKERHUB_CLUSTER_SECRET }}"
 
           if [ $? -eq 0 ]; then
             echo "Secret ${{ secrets.DOCKERHUB_CLUSTER_SECRET }} already exists."
@@ -42,7 +42,7 @@ jobs:
             --from-file=.dockerconfigjson=/home/runner/.docker/config.json \
             --type=kubernetes.io/dockerconfigjson
           fi
-          
+
       - name: Deploy Chart
         run: |
           helm upgrade --install --set-json='imagePullSecrets=[{"name": "${{ secrets.SECRET_NAME }}"}]' --set-json='env_variables=[{"name": "RAILS_ENV", "value": "${{ secrets.RAILS_ENV }}"}, {"name": "RAILS_MASTER_KEY", "value": "${{ secrets.RAILS_MASTER_KEY }}"}, {"name": "POSTGRES_PORT", "value": "${{ secrets.POSTGRES_PORT }}"}, {"name": "POSTGRES_DB", "value": "${{ secrets.POSTGRES_DB }}"}, {"name": "POSTGRES_HOST", "value": "${{ secrets.POSTGRES_HOST }}"}, {"name": "POSTGRES_USER", "value": "${{ secrets.POSTGRES_USER }}"}, {"name": "POSTGRES_PASSWORD", "value": "${{ secrets.POSTGRES_PASSWORD }}"}]' plant-coach-be . --kube-context ${{ secrets.kube_context }}
