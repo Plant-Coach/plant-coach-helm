@@ -26,7 +26,7 @@ jobs:
           touch /home/runner/.kube/config
           echo "${{ secrets.KUBECONFIG }}" > /home/runner/.kube/config
       
-      - name: Connect to Private Registry
+      - name: Create Docker Registry Secret
         run: |
           echo ${{ secrets.DOCKERHUB_CLUSTER_SECRET }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
           kubectl create secret generic ${{ secrets.SECRET_NAME }} \
