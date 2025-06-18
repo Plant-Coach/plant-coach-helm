@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: jmgrant/plant-coach-be:amd64-92839ca1ff856608b3629c3d24e47c39b879cf4f
+  repository: ""
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
