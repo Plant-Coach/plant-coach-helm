@@ -30,7 +30,7 @@ jobs:
         run: |
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
           kubectl create secret generic registry-secret \
-          --from-file=/home/runner/.dockerconfigjson=</home/runner/.docker/config.json> \
+          --from-file=.dockerconfigjson=<home/runner/.docker/config.json> \
           --type=kubernetes.io/dockerconfigjson
 
       - name: Deploy Chart
