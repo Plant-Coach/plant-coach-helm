@@ -28,7 +28,7 @@ jobs:
       
       - name: Prepare Docker Credentials
         run: |
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login ${{ secrets.DOCKER_USERNAME }} --password-stdin
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
       - name: Deploy Chart
         run: |
