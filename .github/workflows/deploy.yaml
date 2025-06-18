@@ -26,9 +26,12 @@ jobs:
           touch /home/runner/.kube/config
           echo "${{ secrets.KUBECONFIG }}" > /home/runner/.kube/config
       
-      - name: Prepare Docker Credentials
+      - name: Connect to Private Registry
         run: |
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+          kubectl create secret generic registry-secret \
+          --from-file=.dockerconfigjson=<path/to/.docker/config.json> \
+          --type=kubernetes.io/dockerconfigjson
 
       - name: Deploy Chart
         run: |
