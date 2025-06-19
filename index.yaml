@@ -3,6 +3,16 @@ entries:
   plant-coach-be:
   - apiVersion: v2
     appVersion: 1.17.0
+    created: "2025-06-19T18:43:49.134153885Z"
+    description: A Helm chart for Kubernetes
+    digest: 5add12bb05c3e7d17c71e938b69bafabcde582ddc7851570ebd75023f25f0ad2
+    name: plant-coach-be
+    type: application
+    urls:
+    - https://github.com/Plant-Coach/plant-coach-helm/releases/download/plant-coach-be-0.6.0/plant-coach-be-0.6.0.tgz
+    version: 0.6.0
+  - apiVersion: v2
+    appVersion: 1.17.0
     created: "2025-06-18T20:06:34.932916681Z"
     description: A Helm chart for Kubernetes
     digest: 992bf4e6f03f1e935936d2209b9019193e65299b7c758dc5d184a0a221d92cf7
@@ -31,4 +41,4 @@ entries:
     urls:
     - https://github.com/Plant-Coach/plant-coach-helm/releases/download/plant-coach-be-0.3.0/plant-coach-be-0.3.0.tgz
     version: 0.3.0
-generated: "2025-06-18T20:06:34.93293156Z"
+generated: "2025-06-19T18:43:49.134174023Z"
