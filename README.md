@@ -8,3 +8,7 @@ Useful command tidbits during development.
 `kubectl exec --stdin --tty plant-coach-be-94f49c475-n8q9v -- /bin/bash `
 `/bin/rails c`
 
+`<service-name>.<namespace>.svc.cluster.local`
+
+`kubectl get svc plant-coach-be`
+`kubectl describe svc <service>`
