@@ -46,7 +46,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Selector labels
 */}}
 {{- define "plant-coach-be.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "plant-coach-be.name" . }}
+app.kubernetes.io/name: {{ .Values.fullnameOverride }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
