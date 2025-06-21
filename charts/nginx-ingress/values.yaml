@@ -1,0 +1,12 @@
+issuer:
+  name: letsencrypt-nginx
+  email: ""
+
+namespace: default
+
+application: ""
+
+ingress:
+  domain:
+    name: ""
+    targetService: ""
