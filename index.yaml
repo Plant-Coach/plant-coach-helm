@@ -3,6 +3,21 @@ entries:
   Ingress-and-TLS-Maintainer:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2025-06-24T19:32:56.682614978Z"
+    dependencies:
+    - name: ingress-nginx
+      repository: https://kubernetes.github.io/ingress-nginx
+      version: 4.12.3
+    description: A Helm Chart that facilitates the the creation of an Nginx Load Balancer
+      and process of enabling TLS for a given domain.
+    digest: a765b2dd1870400437b15f141041882e5171dad79757e02843aa0520c1bb2242
+    name: Ingress-and-TLS-Maintainer
+    type: application
+    urls:
+    - https://github.com/Plant-Coach/plant-coach-helm/releases/download/Ingress-and-TLS-Maintainer-0.1.7/Ingress-and-TLS-Maintainer-0.1.7.tgz
+    version: 0.1.7
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2025-06-21T20:49:19.773214542Z"
     dependencies:
     - name: ingress-nginx
@@ -47,6 +62,16 @@ entries:
     - https://github.com/Plant-Coach/plant-coach-helm/releases/download/Ingress-and-TLS-Maintainer-0.1.1/Ingress-and-TLS-Maintainer-0.1.1.tgz
     version: 0.1.1
   plant-coach-be:
+  - apiVersion: v2
+    appVersion: 1.17.0
+    created: "2025-06-24T19:32:56.798296601Z"
+    description: A Helm chart for Kubernetes
+    digest: 49bf1880630d2c249a79b1ffefeb3f1e9679bf4e11d3dacacd2412a78556ae4b
+    name: plant-coach-be
+    type: application
+    urls:
+    - https://github.com/Plant-Coach/plant-coach-helm/releases/download/plant-coach-be-0.9.2/plant-coach-be-0.9.2.tgz
+    version: 0.9.2
   - apiVersion: v2
     appVersion: 1.17.0
     created: "2025-06-21T20:49:19.93865728Z"
@@ -187,4 +212,4 @@ entries:
     urls:
     - https://github.com/Plant-Coach/plant-coach-helm/releases/download/plant-coach-be-0.3.0/plant-coach-be-0.3.0.tgz
     version: 0.3.0
-generated: "2025-06-21T20:49:19.938781021Z"
+generated: "2025-06-24T19:32:56.798411197Z"
