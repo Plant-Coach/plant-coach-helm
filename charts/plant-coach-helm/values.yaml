@@ -73,14 +73,14 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
-# livenessProbe:
-#   httpGet:
-#     path: /healthz
-#     port: http
-# readinessProbe:
-#   httpGet:
-#     path: /ready
-#     port: http
+livenessProbe:
+  httpGet:
+    path: /rails/health
+    port: http
+readinessProbe:
+  httpGet:
+    path: /rails/ready
+    port: http
 
 autoscaling:
   enabled: false
