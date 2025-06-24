@@ -76,11 +76,11 @@ resources: {}
 livenessProbe:
   httpGet:
     path: /rails/health
-    port: http
+    port: 3000
 readinessProbe:
   httpGet:
     path: /rails/ready
-    port: http
+    port: 3000
 
 autoscaling:
   enabled: false
