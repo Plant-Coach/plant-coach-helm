@@ -1,12 +1,12 @@
 issuer:
   name: letsencrypt-nginx
-  email: ""
+  email: joelgrantdev@gmail.com
 
 namespace: default
 
-application: ""
+application: plant-coach
 
 ingress:
   domain:
-    name: ""
-    targetService: ""
+    name: plantcoach.app
+    targetService: plant-coach-fe
