@@ -2,8 +2,8 @@ name: Release Charts
 
 on:
   push:
-    branches:
-      - main
+    # branches:
+    #   - main
 
 jobs:
   release:
@@ -54,12 +54,14 @@ jobs:
 
           echo "[INFO] Extracting version from Helm Chart package output."
           REPO_NAME=${GITHUB_REPOSITORY##*/}
+          echo $REPO_NAME
           identifier="$REPO_NAME-"
+          echo "identifier: $identifier"
           result=$(echo $OUTPUT | grep -b -o $identifier )
-          echo $result
+          echo "result: $result"
           delimiter=":"
           index="${result%%$delimiter*}"
-          echo $index
+          echo "index: $index"
           VERSION=${OUTPUT:$index}
           echo "Extracted version: $VERSION"
 
