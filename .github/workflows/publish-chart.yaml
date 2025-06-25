@@ -1,29 +1,10 @@
 name: Push Helm
-
 on: push
 jobs:
   push:
-    permissions:
-      contents: write
     runs-on: ubuntu-latest
-    name: Helm Push
+    name: Helm Push Demo
     steps:
-      # - name: Checkout
-      #   uses: actions/checkout@v4
-      #   with:
-      #     fetch-depth: 0
-
-      # - name: Package Chart
-      #   run: |
-      #     OUTPUT=$(helm package .)
-      #     echo $OUTPUT
-      #     num=$(echo $OUTPUT | grep -b -o "plant-coach-be-")
-      #     echo $num
-      #     index=${num:0:2}
-      #     echo $index
-      #     version=${OUTPUT:$index}
-      #     echo $version
-      #     echo "/home/runner/work/plant-coach-helm/plant-coach-helm/$version"
       - uses: actions/checkout@v4
       - name: Push
         id: push
@@ -35,4 +16,4 @@ jobs:
           owner: "cloudsmith"
           repo: "actions"
           republish: "true" # needed ONLY if version is not changing
-          file: "plant-coach-helm/${version}"
+          file: "plant-coach-be-0.10.0.tgz"
