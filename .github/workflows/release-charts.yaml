@@ -45,6 +45,7 @@ jobs:
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
       - name: Package Chart
+        id: package-chart
         run: |
           echo $(pwd)
           echo $(ls -l)
@@ -55,10 +56,10 @@ jobs:
           index=${num:0:2}
           echo $index
           VERSION=${OUTPUT:$index}
-          echo $VERSION
+          echo "$version=$VERSION" >> $GITHUB_OUTPUT
       - name: Prepare to Push
         run: |
-          echo $VERSION
+          echo ${{ steps.vars.outputs.version }}
 
           # install and initialise helm
           curl https://raw.githubusercontent.com/helm/helm/master/scripts/get | bash
