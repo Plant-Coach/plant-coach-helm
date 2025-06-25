@@ -50,3 +50,5 @@ jobs:
           echo $OUTPUT
           num=$(echo $OUTPUT | grep -b -o "plant-coach-be-")
           echo $num
+          index=${num:0:2}
+          echo $index
