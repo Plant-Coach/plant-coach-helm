@@ -46,4 +46,4 @@ jobs:
 
       - name: Build Chart
         run: |
-          echo helm package .
+          helm package .
