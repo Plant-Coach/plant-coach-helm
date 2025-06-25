@@ -47,4 +47,4 @@ jobs:
       - name: Build Chart
         run: |
           OUTPUT=$(helm package .)
-          echo $OUTPUT 
+          echo $OUTPUT | grep -b -o "plant-coach-be-"
