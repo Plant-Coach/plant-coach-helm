@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Package Chart
         run: |
-          helm package .
+          echo $(pwd)
           # OUTPUT=$(helm package .)
           # echo $OUTPUT
           # num=$(echo $OUTPUT | grep -b -o "plant-coach-be-")
