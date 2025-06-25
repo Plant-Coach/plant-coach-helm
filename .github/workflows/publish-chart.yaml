@@ -8,23 +8,23 @@ jobs:
     runs-on: ubuntu-latest
     name: Helm Push
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      # - name: Checkout
+      #   uses: actions/checkout@v4
+      #   with:
+      #     fetch-depth: 0
 
-      - name: Package Chart
-        run: |
-          OUTPUT=$(helm package .)
-          echo $OUTPUT
-          num=$(echo $OUTPUT | grep -b -o "plant-coach-be-")
-          echo $num
-          index=${num:0:2}
-          echo $index
-          version=${OUTPUT:$index}
-          echo $version
-          echo "/home/runner/work/plant-coach-helm/plant-coach-helm/$version"
-      # - uses: actions/checkout@v4
+      # - name: Package Chart
+      #   run: |
+      #     OUTPUT=$(helm package .)
+      #     echo $OUTPUT
+      #     num=$(echo $OUTPUT | grep -b -o "plant-coach-be-")
+      #     echo $num
+      #     index=${num:0:2}
+      #     echo $index
+      #     version=${OUTPUT:$index}
+      #     echo $version
+      #     echo "/home/runner/work/plant-coach-helm/plant-coach-helm/$version"
+      - uses: actions/checkout@v4
       - name: Push
         id: push
         uses: ./
@@ -35,4 +35,4 @@ jobs:
           owner: "cloudsmith"
           repo: "actions"
           republish: "true" # needed ONLY if version is not changing
-          file: "/home/runner/work/plant-coach-helm/plant-coach-helm/${version}"
+          file: "plant-coach-helm/${version}"
