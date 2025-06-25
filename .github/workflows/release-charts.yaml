@@ -77,7 +77,7 @@ jobs:
 
       - name: Save Helm Chart to GitHub Secrets
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           PACKAGE_URI="https://dl.cloudsmith.io/basic/plant-coach/plant-coach-helm/helm/charts/${{ steps.prepare-push.outputs.PATH }}"
           echo "Updating latest Helm Chart package: $PACKAGE_URI"
