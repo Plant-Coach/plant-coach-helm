@@ -10,8 +10,8 @@ jobs:
     permissions:
       contents: write
     runs-on: ubuntu-latest
-    env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    # env:
+    #   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -81,3 +81,5 @@ jobs:
           PACKAGE_URI="https://dl.cloudsmith.io/basic/plant-coach/plant-coach-helm/helm/charts/${{ steps.prepare-push.outputs.PATH }}"
           echo "Updating latest Helm Chart package: $PACKAGE_URI"
           gh secret set HELM_CHART --org Plant-Coach --visibility all --body "$PACKAGE_URI"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
