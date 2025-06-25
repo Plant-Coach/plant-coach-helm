@@ -71,5 +71,5 @@ jobs:
           pip install --user cloudsmith-cli
 
           # publish chart using the cloudsmith CLI
-          cloudsmith push helm joel-grant/plant-coach-helm $VERSION
+          cloudsmith push helm plant-coach/plant-coach-helm $VERSION
 
