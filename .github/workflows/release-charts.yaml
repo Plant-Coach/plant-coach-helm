@@ -56,4 +56,4 @@ jobs:
           echo $version
       - name: Publish Chart
         run: |
-          echo "Helm Chart version $version"
+          echo "Helm Chart version" $version
