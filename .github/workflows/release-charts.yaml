@@ -56,7 +56,7 @@ jobs:
           index=${num:0:2}
           echo $index
           VERSION=${OUTPUT:$index}
-          echo "$version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "$version"
           
       - name: Prepare to Push
         run: |
