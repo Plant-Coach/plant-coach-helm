@@ -44,7 +44,7 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
-      - name: Build Chart
+      - name: Package Chart
         run: |
           OUTPUT=$(helm package .)
           echo $OUTPUT
@@ -54,3 +54,6 @@ jobs:
           echo $index
           version=${OUTPUT:$index}
           echo $version
+      - name: Publish Chart
+        run: |
+          echo "Helm Chart version $version"
