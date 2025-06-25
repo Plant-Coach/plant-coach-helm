@@ -48,4 +48,5 @@ jobs:
         run: |
           OUTPUT=$(helm package .)
           echo $OUTPUT
-          num=$(echo $OUTPUT | grep -b -o "plant-coach-be-")
+          num=$(echo $OUTPUT | grep -o "plant-coach-be-")
+          echo $num
