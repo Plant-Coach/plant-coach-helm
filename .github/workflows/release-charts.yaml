@@ -55,9 +55,8 @@ jobs:
           echo "[INFO] Extracting version from Helm Chart package output."
           REPO_NAME=${GITHUB_REPOSITORY##*/}
           echo $REPO_NAME
-          identifier="$REPO_NAME-"
-          echo "identifier: $identifier"
-          result=$(echo $OUTPUT | grep -b -o $identifier )
+
+          result=$(echo $OUTPUT | grep -b -o "plant-coach-be-" )
           echo "result: $result"
           delimiter=":"
           index="${result%%$delimiter*}"
