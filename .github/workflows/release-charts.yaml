@@ -70,6 +70,7 @@ jobs:
           # install the cloudsmith CLI
           pip install --user cloudsmith-cli
 
+          echo "[INFO] Pushing Helm Chart to Cloudsmith repo: plant-coach/plant-coach-helm"
           # publish chart using the cloudsmith CLI
           cloudsmith push helm plant-coach/plant-coach-helm $VERSION
 
