@@ -3,7 +3,8 @@ name: Push Helm
 on: push
 jobs:
   push:
-
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     name: Helm Push
     steps:
