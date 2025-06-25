@@ -1,33 +1,33 @@
-name: Push Helm
+# name: Push Helm
 
-on: push
-jobs:
-  push:
+# on: push
+# jobs:
+#   push:
 
-    runs-on: ubuntu-latest
-    name: Helm Push
-    steps:
-      - name: Package Chart
-        run: |
-          OUTPUT=$(helm package .)
-          echo $OUTPUT
-          num=$(echo $OUTPUT | grep -b -o "plant-coach-be-")
-          echo $num
-          index=${num:0:2}
-          echo $index
-          version=${OUTPUT:$index}
-          echo $version
-          echo "/home/runner/work/plant-coach-helm/plant-coach-helm/$version"
+#     runs-on: ubuntu-latest
+#     name: Helm Push
+#     steps:
+#       - name: Package Chart
+#         run: |
+#           OUTPUT=$(helm package .)
+#           echo $OUTPUT
+#           num=$(echo $OUTPUT | grep -b -o "plant-coach-be-")
+#           echo $num
+#           index=${num:0:2}
+#           echo $index
+#           version=${OUTPUT:$index}
+#           echo $version
+#           echo "/home/runner/work/plant-coach-helm/plant-coach-helm/$version"
 
-      - uses: actions/checkout@v4
-      - name: Push
-        id: push
-        uses: ./
-        with:
-          api-key: ${{ secrets.CLOUDSMITH_API_KEY }}
-          command: "push"
-          format: "helm"
-          owner: "cloudsmith"
-          repo: "actions"
-          republish: "true" # needed ONLY if version is not changing
-          file: "/home/runner/work/plant-coach-helm/plant-coach-helm/$version"
+#       - uses: actions/checkout@v4
+#       - name: Push
+#         id: push
+#         uses: ./
+#         with:
+#           api-key: ${{ secrets.CLOUDSMITH_API_KEY }}
+#           command: "push"
+#           format: "helm"
+#           owner: "cloudsmith"
+#           repo: "actions"
+#           republish: "true" # needed ONLY if version is not changing
+#           file: "/home/runner/work/plant-coach-helm/plant-coach-helm/$version"
