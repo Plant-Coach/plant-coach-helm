@@ -23,8 +23,8 @@ jobs:
           echo $index
           version=${OUTPUT:$index}
           echo $version
-          echo "/home/runner/work/plant-coach-helm/plant-coach-helm/${version}"
-      - uses: actions/checkout@v4
+          echo "/home/runner/work/plant-coach-helm/plant-coach-helm/$version"
+      # - uses: actions/checkout@v4
       - name: Push
         id: push
         uses: ./
