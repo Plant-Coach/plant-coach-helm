@@ -52,3 +52,5 @@ jobs:
           echo $num
           index=${num:0:2}
           echo $index
+          version=${OUTPUT:$index}
+          echo $version
