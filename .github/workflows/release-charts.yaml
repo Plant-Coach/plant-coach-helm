@@ -58,7 +58,7 @@ jobs:
           echo $version
       - name: Prepare to Push
         run: |
-          echo "Helm Chart version" ${version}
+          echo $version
 
           # install and initialise helm
           curl https://raw.githubusercontent.com/helm/helm/master/scripts/get | bash
