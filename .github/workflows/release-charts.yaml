@@ -7,8 +7,7 @@ on:
 
 jobs:
   release:
-    permissions:
-      contents: write
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -44,7 +43,40 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
-      - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.6.0
+      - name: Package Chart
+        id: package-chart
+        run: |
+          echo $(pwd)
+          echo $(ls -l)
+          OUTPUT=$(helm package .)
+          echo $OUTPUT
+          num=$(echo $OUTPUT | grep -b -o "plant-coach-be-")
+          echo $num
+          index=${num:0:2}
+          echo $index
+          VERSION=${OUTPUT:$index}
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          
+      - name: Prepare to Push
+        id: prepare-push
+        run: |
+          VERSION="${{ steps.package-chart.outputs.version }}"
+          echo $VERSION
+
+          # install and initialise helm
+          curl https://raw.githubusercontent.com/helm/helm/master/scripts/get | bash
+          helm init --client-only
+
+          # install the cloudsmith CLI
+          pip install --user cloudsmith-cli
+          
+          # publish chart using the cloudsmith CLI
+          cloudsmith push helm plant-coach/plant-coach-helm /home/runner/work/plant-coach-helm/plant-coach-helm/$VERSION --republish -k ${{ secrets.CLOUDSMITH_API_KEY }}
+
+      - name: Save Helm Chart to GitHub Secrets
         env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          PACKAGE_URI="https://dl.cloudsmith.io/basic/plant-coach/plant-coach-helm/helm/charts/${{ steps.package-chart.outputs.version }}"
+          echo "Updating latest Helm Chart package: $PACKAGE_URI"
+          gh secret set HELM_CHART --org Plant-Coach --visibility all --body "$PACKAGE_URI"
