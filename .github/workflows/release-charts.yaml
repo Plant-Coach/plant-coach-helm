@@ -39,23 +39,23 @@ jobs:
             --type=kubernetes.io/dockerconfigjson
           fi
 
-      - name: Configure Git
-        run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+      # - name: Configure Git
+      #   run: |
+      #     git config user.name "$GITHUB_ACTOR"
+      #     git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
-      - name: Package Chart
-        run: |
-          echo $(pwd)
-          echo $(ls -l)
-          OUTPUT=$(helm package .)
-          echo $OUTPUT
-          num=$(echo $OUTPUT | grep -b -o "plant-coach-be-")
-          echo $num
-          index=${num:0:2}
-          echo $index
-          version=${OUTPUT:$index}
-          echo $version
-      - name: Publish Chart
-        run: |
-          echo "Helm Chart version" $version
+      # - name: Package Chart
+      #   run: |
+      #     echo $(pwd)
+      #     echo $(ls -l)
+      #     OUTPUT=$(helm package .)
+      #     echo $OUTPUT
+      #     num=$(echo $OUTPUT | grep -b -o "plant-coach-be-")
+      #     echo $num
+      #     index=${num:0:2}
+      #     echo $index
+      #     version=${OUTPUT:$index}
+      #     echo $version
+      # - name: Publish Chart
+      #   run: |
+      #     echo "Helm Chart version" $version
