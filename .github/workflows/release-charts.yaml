@@ -60,7 +60,8 @@ jobs:
           
       - name: Prepare to Push
         run: |
-          echo "${{ steps.package-chart.outputs.version }}"
+          VERSION="${{ steps.package-chart.outputs.version }}"
+          echo $VERSION
 
           # install and initialise helm
           curl https://raw.githubusercontent.com/helm/helm/master/scripts/get | bash
