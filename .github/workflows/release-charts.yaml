@@ -71,16 +71,14 @@ jobs:
           # install the cloudsmith CLI
           pip install --user cloudsmith-cli
 
-          echo "[INFO] Pushing Helm Chart to Cloudsmith repo: plant-coach/plant-coach-helm"
+          # echo "[INFO] Pushing Helm Chart to Cloudsmith repo: plant-coach/plant-coach-helm"
           PATH=/home/runner/work/plant-coach-helm/plant-coach-helm/$VERSION
-          echo "[INFO] from: $PATH"
+          # echo "[INFO] from: $PATH"
           
           # publish chart using the cloudsmith CLI
           cloudsmith push helm plant-coach/plant-coach-helm $PATH --republish -k ${{ secrets.CLOUDSMITH_API_KEY }}
-          
-          PATH >> $GITHUB_OUTPUT
 
-      - name: Save Helm Chart to GitHub Secrets
-        run: |
-          echo ${{ steps.prepare-push.outputs.PATH }}
-          gh secret set HELM_CHART --org Plant-Coach --visibility all --body "${{ steps.prepare.output.PATH }}"
+      # - name: Save Helm Chart to GitHub Secrets
+      #   run: |
+      #     echo ${{ steps.prepare-push.outputs.PATH }}
+      #     gh secret set HELM_CHART --org Plant-Coach --visibility all --body "${{ steps.prepare.output.PATH }}"
