@@ -59,6 +59,7 @@ jobs:
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           
       - name: Prepare to Push
+        id: prepare-push
         run: |
           VERSION="${{ steps.package-chart.outputs.version }}"
           echo $VERSION
@@ -71,7 +72,12 @@ jobs:
           pip install --user cloudsmith-cli
 
           echo "[INFO] Pushing Helm Chart to Cloudsmith repo: plant-coach/plant-coach-helm"
+          PATH=/home/runner/work/plant-coach-helm/plant-coach-helm/$VERSION >> $GITHUB_OUTPUT
+          echo "[INFO] from: $PATH"
           # publish chart using the cloudsmith CLI
           cloudsmith push helm plant-coach/plant-coach-helm /home/runner/work/plant-coach-helm/plant-coach-helm/$VERSION -k ${{ secrets.CLOUDSMITH_API_KEY }}
 
-
+      - name: Save Helm Chart to GitHub Secrets
+        run: |
+          echo ${{ steps.prepare-push.outputs.PATH }}
+          gh secret set HELM_CHART --org Plant-Coach --visibility all --body "${{ steps.prepare.output.PATH }}"
