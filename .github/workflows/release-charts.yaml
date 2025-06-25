@@ -72,5 +72,5 @@ jobs:
 
           echo "[INFO] Pushing Helm Chart to Cloudsmith repo: plant-coach/plant-coach-helm"
           # publish chart using the cloudsmith CLI
-          cloudsmith push helm joel-grant/plant-coach $VERSION
+          cloudsmith push helm plant-coach/plant-coach-helm ""
 
