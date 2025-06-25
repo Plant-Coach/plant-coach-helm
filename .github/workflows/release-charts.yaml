@@ -11,10 +11,10 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     steps:
-      # - name: Checkout
-      #   uses: actions/checkout@v4
-      #   with:
-      #     fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       
       - name: Add Kubeconfig
         run: |
@@ -39,23 +39,31 @@ jobs:
             --type=kubernetes.io/dockerconfigjson
           fi
 
-      # - name: Configure Git
-      #   run: |
-      #     git config user.name "$GITHUB_ACTOR"
-      #     git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
-      # - name: Package Chart
-      #   run: |
-      #     echo $(pwd)
-      #     echo $(ls -l)
-      #     OUTPUT=$(helm package .)
-      #     echo $OUTPUT
-      #     num=$(echo $OUTPUT | grep -b -o "plant-coach-be-")
-      #     echo $num
-      #     index=${num:0:2}
-      #     echo $index
-      #     version=${OUTPUT:$index}
-      #     echo $version
-      # - name: Publish Chart
-      #   run: |
-      #     echo "Helm Chart version" $version
+      - name: Package Chart
+        run: |
+          echo $(pwd)
+          echo $(ls -l)
+          OUTPUT=$(helm package .)
+          echo $OUTPUT
+          num=$(echo $OUTPUT | grep -b -o "plant-coach-be-")
+          echo $num
+          index=${num:0:2}
+          echo $index
+          version=${OUTPUT:$index}
+          echo $version
+      - name: Prepare to Push
+        run: |
+          echo "Helm Chart version" $version
+
+          # install and initialise helm
+          curl https://raw.githubusercontent.com/helm/helm/master/scripts/get | bash
+          helm init --client-only
+
+          # install the cloudsmith CLI
+          pip install --user cloudsmith-cli
+
