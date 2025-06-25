@@ -54,11 +54,11 @@ jobs:
           echo $num
           index=${num:0:2}
           echo $index
-          version=${OUTPUT:$index}
-          echo $version
+          VERSION=${OUTPUT:$index}
+          echo $VERSION
       - name: Prepare to Push
         run: |
-          echo $version
+          echo $VERSION
 
           # install and initialise helm
           curl https://raw.githubusercontent.com/helm/helm/master/scripts/get | bash
@@ -68,5 +68,5 @@ jobs:
           pip install --user cloudsmith-cli
 
           # publish chart using the cloudsmith CLI
-          cloudsmith push helm joel-grant/plant-coach-helm "${version}"
+          cloudsmith push helm joel-grant/plant-coach-helm $VERSION
 
