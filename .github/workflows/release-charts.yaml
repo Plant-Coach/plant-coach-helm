@@ -56,11 +56,11 @@ jobs:
           index=${num:0:2}
           echo $index
           VERSION=${OUTPUT:$index}
-          echo "$VERSION=$VERSION" >> $GITHUB_OUTPUT
+          echo "$version=$VERSION" >> $GITHUB_OUTPUT
           
       - name: Prepare to Push
         run: |
-          echo "${{ steps.package-chart.outputs.VERSION }}"
+          echo "${{ needs.package-chart.outputs.version }}"
 
           # install and initialise helm
           curl https://raw.githubusercontent.com/helm/helm/master/scripts/get | bash
