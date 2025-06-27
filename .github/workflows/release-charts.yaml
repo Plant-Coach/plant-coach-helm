@@ -71,7 +71,7 @@ jobs:
         run: |
           REPO_NAME=${GITHUB_REPOSITORY##*/}
           REPO=${GITHUB_REPOSITORY,,}
-          PACKAGE_URI="https://dl.cloudsmith.io/basic/$GITHUB_REPOSITORY/helm/charts/${{ steps.package-chart.outputs.version }}"
+          PACKAGE_URI="https://dl.cloudsmith.io/basic/$REPO/helm/charts/${{ steps.package-chart.outputs.version }}"
           echo "[INFO] Setting the GitHub Org secret to the latest Helm Chart package: $PACKAGE_URI"
           gh secret set HELM_CHART --org Plant-Coach --visibility all --body "$PACKAGE_URI"
           
