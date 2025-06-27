@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "plant-coach-be.fullname" . }}
-  namespace: {{ .Release.Namespace }}``
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "plant-coach-be.labels" . | nindent 4 }}
 spec:
