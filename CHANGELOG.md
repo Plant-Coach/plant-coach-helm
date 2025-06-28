@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/Plant-Coach/plant-coach-helm/compare/v0.3.0...v0.3.1) (2025-06-28)
+
+
+### Bug Fixes
+
+* remove default env variables that may not always be needed ([#50](https://github.com/Plant-Coach/plant-coach-helm/issues/50)) ([0a34a6b](https://github.com/Plant-Coach/plant-coach-helm/commit/0a34a6bace35f937624bb563f046e120489291eb))
+
 ## [0.3.0](https://github.com/Plant-Coach/plant-coach-helm/compare/v0.2.0...v0.3.0) (2025-06-28)
 
 
