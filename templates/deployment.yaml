@@ -44,12 +44,14 @@ spec:
           {{- end }}
           ports:
             - name: http
-              containerPort: {{ .Values.service.port }}
+              containerPort: {{ .Values.service.targetPort }}
               protocol: TCP
+          {{- if .Values.livenessProbe.active }}
           livenessProbe:
-            {{- toYaml .Values.livenessProbe | nindent 12 }}
+            {{- toYaml .Values.livenessProbe.livenessProbe | nindent 12 }}
           readinessProbe:
-            {{- toYaml .Values.readinessProbe | nindent 12 }}
+            {{- toYaml .Values.livenessProbe.readinessProbe | nindent 12 }}
+          {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- with .Values.volumeMounts }}
