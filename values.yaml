@@ -74,13 +74,15 @@ resources: {}
   #   memory: 128Mi
 
 livenessProbe:
-  httpGet:
-    path: /rails/health
-    port: 3000
-readinessProbe:
-  httpGet:
-    path: /rails/ready
-    port: 3000
+  active: false
+  livenessProbe:
+    httpGet:
+      path: /rails/health
+      port: 3000
+  readinessProbe:
+    httpGet:
+      path: /rails/ready
+      port: 3000
 
 autoscaling:
   enabled: false
